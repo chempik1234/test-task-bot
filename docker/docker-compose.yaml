@@ -1,0 +1,87 @@
+x-bot-template: &bot-template
+  build:
+    dockerfile: ../docker/Dockerfile.bot
+    context: ../bot
+  command: python main.py
+  restart: unless-stopped
+  env_file:
+    - ../config/.env
+  healthcheck:
+    test: [ "CMD", "curl", "-f", "http://localhost:5000/metrics" ]
+    interval: 30s
+    timeout: 5s
+    retries: 3
+  volumes:
+    - ../config/template.txt:/etc/app/template.txt
+  networks:
+    - bot-network
+
+services:
+  admin:
+    build:
+      context: ../admin/
+      dockerfile: ../docker/Dockerfile.admin
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - ../config/.env
+    command: >
+      sh -c "python manage.py migrate ; 
+      python manage.py migrate sessions ; 
+      python manage.py runserver 0.0.0.0:8080 --noreload"
+    networks:
+      - bot-network
+
+  #region bot
+  bot1:
+    <<: *bot-template
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5001:5000"
+    environment:
+      - BOT_WEBHOOK_PORT=5000
+      - BOT_INSTANCE_NAME=bot1
+  #endregion
+
+  db:
+    container_name: db
+    image: postgres:16.3
+    ports:
+      - "5432:5432"
+    env_file:
+      - ../config/.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bot-network
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../nginx/conf.d:/etc/nginx/conf.d
+      - ../nginx/ssl:/etc/nginx/ssl
+    networks:
+      - bot-network
+    depends_on:
+      - bot1
+      - admin
+
+networks:
+  bot-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
