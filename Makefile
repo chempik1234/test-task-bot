@@ -25,9 +25,6 @@ updbot:
 logsbot:
 	docker compose -f ./docker/docker-compose.yaml logs bot1
 
-logsworker:
-	docker compose -f ./docker/dockre-compose.yaml logs worker
-
 logsadmin:
 	docker compose -f ./docker/docker-compose.yaml logs admin
 
