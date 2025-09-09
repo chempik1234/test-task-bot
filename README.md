@@ -22,8 +22,5 @@ make upd
 * `make down` - `docker compose down`
 * `make deldb` - удалить том с БД
 * `make freezeb` - `pip freeze` для requirements бота
-* `make freezea` - `pip freeze` для requirements админки
-* `make mig` - создать миграции (в админке)
 * `logsbot` - логи бота
-* `logsadmin` - логи админки
-* `restart ARGS="admin db"` - рестарт сервисов, указанных в args
+* `restart ARGS="bot1 db"` - рестарт сервисов, указанных в args
