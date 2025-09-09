@@ -1,6 +1,5 @@
-import os.path
+from jinja2 import Environment, FileSystemLoader
+from utils import get_path_to
 
-from init.config import bot_config
-
-with open(os.path.join(bot_config.CONFIG_MOUNT_DIR, "template.txt"), "r") as f:
-    TEMPLATE_TEXT = f.read()
+env = Environment(loader=FileSystemLoader(get_path_to("templates")))
+VACANCY_TEMPLATE = env.get_template('template.jinja')

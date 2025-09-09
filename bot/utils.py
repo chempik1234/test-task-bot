@@ -1,22 +1,11 @@
-import datetime
-import json
+import os
 import uuid
-from typing import Any, Dict
+from typing import Any
 
-from aiogram.types import Message
-
-
-def str_to_int_nullable(s: str) -> int | None:
-    if s == 'None':
-        result = None
-    elif s.isdigit():
-        result = int(s)
-    else:
-        raise ValueError("invalid nullable int from str: {}".format(s))
-    return result
+from init.config import bot_config
 
 
-def get_logging_extra(user_id: Any) -> dict:
+def get_logging_extra(user_id: Any = None) -> dict:
     request_id = str(uuid.uuid4())
     result = {"request_id": request_id}
     if user_id is not None:
@@ -24,17 +13,9 @@ def get_logging_extra(user_id: Any) -> dict:
     return result
 
 
-def split_text_for_telegram(string: str) -> list[str]:
-    return [string[i: i + 4000] for i in range(0, len(string), 4000)]
+# def split_text_for_telegram(string: str) -> list[str]:
+#     return [string[i: i + 4000] for i in range(0, len(string), 4000)]
 
 
-def render(template: str, context: Dict[str, str]) -> str:
-    """
-    render template with context
-
-    replace {key} in template with value by 'key' in context
-    :param template: raw template string
-    :param context: dict with values to insert into template
-    :return: rendered template
-    """
-    return template.format(**context)
+def get_path_to(path_to_join: str) -> str:
+    return os.path.join(bot_config.CONFIG_MOUNT_DIR, path_to_join)

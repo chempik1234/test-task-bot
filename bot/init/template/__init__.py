@@ -1,1 +1,1 @@
-from .init_template import TEMPLATE_TEXT
+from .init_template import VACANCY_TEMPLATE

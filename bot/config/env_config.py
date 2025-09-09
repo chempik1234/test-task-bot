@@ -17,9 +17,7 @@ class BotConfig(Config):
     POSTGRES_PORT: int = Field("POSTGRES_PORT", default="5432")
     # endregion
 
-    BOT_ADMIN_USERS: list[str] = Field("BOT_ADMIN_USERS", caster=ListCaster(","))
-    BOT_PUBLISH_CHAT_ID: int = Field("BOT_PUBLISH_CHAT_ID", caster=IntCaster())
-    BOT_PUBLISH_BUTTON_TEXT: str = Field("BOT_PUBLISH_BUTTON_TEXT", "Опубликовать случайную вакансию")
+    BOT_SECRET_KEY_ON_LOGIN: str = Field("BOT_SECRET_KEY_ON_LOGIN")
     BOT_WEBHOOK_HOST: str = Field("BOT_WEBHOOK_HOST", default="0.0.0.0")
     BOT_WEBHOOK_BASE: str = Field("BOT_WEBHOOK_BASE", default="")
     BOT_WEBHOOK_PORT: int = Field("BOT_WEBHOOK_PORT", default="5000")

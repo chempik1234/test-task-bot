@@ -1,0 +1,22 @@
+{
+  "channels": {
+    "telegram": [
+      {
+        "name": "Some Channel",
+        "link": "https://t.me/someChan",
+        "chat_id": 1234,
+        "publish_hours": [
+          "09:00"
+        ],
+        "rules": [
+          {
+            "field": "some_field",
+            "filter": [
+              "one_of_possible_values_filter"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

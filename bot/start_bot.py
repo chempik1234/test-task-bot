@@ -17,7 +17,7 @@ async def start_bot(bot: Bot, dp: Dispatcher, app: Application, only_handled_upd
     if bot_config.BOT_USE_WEBHOOK:
         logger.info("using webhook")
         startup_exception = None
-        for i in range(5):
+        for _ in range(5):
             try:
                 logger.info("connecting to webhook...")
                 await bot.set_webhook(

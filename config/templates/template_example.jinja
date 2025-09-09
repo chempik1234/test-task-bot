@@ -1,0 +1,14 @@
+*{{ vacancy.name }}* в {{ vacancy.company }}
+{% if vacancy.salary_from != None or vacancy.salary_to != None %}
+ЗП: {% if vacancy.salary_from != None %}от {{ vacancy.salary_from }}{% endif %} {% if vacancy.salary_to != None %}до {{ vacancy.salary_to }}{% endif %}{% endif %}
+{% if vacancy.location %}Город: {{ vacancy.location }}{% endif %}
+
+{% if vacancy.work_format %}Формат: *{{ vacancy.work_format }}*{% endif %}
+
+{% if vacancy.experience != None %}Опыт: *{experience}*{% endif %} {% if vacancy.level %}{level}{% endif %}
+{% if vacancy.description %}
+
+{{ vacancy.description }}
+
+{% endif %}
+Откликнуться: {{ vacancy.link }}

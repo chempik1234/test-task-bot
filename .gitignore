@@ -22,4 +22,5 @@ fabric.properties
 
 # Actual configs
 config/.env
-config/template.txt
+config/templates/template.jinja
+config/config.json

@@ -12,28 +12,29 @@ x-bot-template: &bot-template
     timeout: 5s
     retries: 3
   volumes:
-    - ../config/template.txt:/etc/app/template.txt
+    - ../config/config.json:/etc/app/config.json
+    - ../config/templates:/etc/app/templates
   networks:
     - bot-network
 
 services:
-  admin:
-    build:
-      context: ../admin/
-      dockerfile: ../docker/Dockerfile.admin
-    ports:
-      - "8080:8080"
-    depends_on:
-      db:
-        condition: service_healthy
-    env_file:
-      - ../config/.env
-    command: >
-      sh -c "python manage.py migrate ; 
-      python manage.py migrate sessions ; 
-      python manage.py runserver 0.0.0.0:8080 --noreload"
-    networks:
-      - bot-network
+  # admin:
+  #   build:
+  #     context: ../admin/
+  #     dockerfile: ../docker/Dockerfile.admin
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   env_file:
+  #     - ../config/.env
+  #   command: >
+  #     sh -c "python manage.py migrate ;
+  #     python manage.py migrate sessions ;
+  #     python manage.py runserver 0.0.0.0:8080 --noreload"
+  #   networks:
+  #     - bot-network
 
   #region bot
   bot1:
@@ -77,7 +78,7 @@ services:
       - bot-network
     depends_on:
       - bot1
-      - admin
+      # - admin
 
 networks:
   bot-network:
