@@ -7,7 +7,10 @@
 
 ## Как запустить?
 
-1. Создать `./config/.env` и `./config/templates/template.jinja` на основе примеров в той же папке.
+1. Создать на основе примеров в той же папке:
+   1. `./config/.env`
+   2. `./config/templates/template.jinja`
+   3. `./config/config.json` и `./config/debug_config.json`
 2. В папке с проектом выполнить:
 
 ```bash

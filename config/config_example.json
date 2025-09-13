@@ -1,18 +1,183 @@
 {
   "channels": {
+    "vk": [
+      {
+        "name": "Test QA (VK)",
+        "endpoint": "https://api.vk.com/method",
+        "version": "5.67",
+        "peer_id": "212025650",
+        "access_token": "<hidden>",
+        "publish_hours": [],
+        "rules": [
+          {
+            "field": "position",
+            "filter": [
+              "qa"
+            ]
+          }
+        ]
+      }
+    ],
     "telegram": [
       {
-        "name": "Some Channel",
-        "link": "https://t.me/someChan",
-        "chat_id": 1234,
+        "name": "QA",
+        "link": "https://t.me/rekrutai_QA",
+        "chat_id": -1002452210610,
         "publish_hours": [
-          "09:00"
+          "09:00",
+          "13:00",
+          "19:00"
         ],
         "rules": [
           {
-            "field": "some_field",
+            "field": "position",
             "filter": [
-              "one_of_possible_values_filter"
+              "qa"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Analyst",
+        "link": "https://t.me/rekrutai_BA",
+        "chat_id": -1001812039140,
+        "publish_hours": [
+          "09:00",
+          "13:00",
+          "19:00"
+        ],
+        "rules": [
+          {
+            "field": "position",
+            "filter": [
+              "analyst"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SA",
+        "link": "https://t.me/rekrutai_SA",
+        "chat_id": -1002076169429,
+        "publish_hours": [
+          "09:00",
+          "13:00",
+          "19:00"
+        ],
+        "rules": [
+          {
+            "field": "position",
+            "filter": [
+              "devops",
+              "technical-support"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Project Manager",
+        "link": "https://t.me/rekrutai_PM",
+        "chat_id": -1002142243348,
+        "publish_hours": [
+          "09:00",
+          "13:00",
+          "19:00"
+        ],
+        "rules": [
+          {
+            "field": "position",
+            "filter": [
+              "pm"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Data Science",
+        "link": "https://t.me/+wUOauI9zc8VkODY1",
+        "chat_id": -1001984527526,
+        "publish_hours": [
+          "09:00",
+          "13:00",
+          "19:00"
+        ],
+        "rules": [
+          {
+            "field": "position",
+            "filter": [
+              "data-scientist"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Frontend",
+        "link": "https://t.me/recrutai_FE",
+        "chat_id": -1002056575042,
+        "publish_hours": [
+          "09:00",
+          "13:00",
+          "19:00"
+        ],
+        "rules": [
+          {
+            "field": "position",
+            "filter": [
+              "fe"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "JVM",
+        "link": "https://t.me/recrutai_JVM",
+        "chat_id": -1001901477020,
+        "publish_hours": [
+          "09:00",
+          "13:00",
+          "19:00"
+        ],
+        "rules": [
+          {
+            "field": "position",
+            "filter": [
+              "jvm"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Designer",
+        "link": "https://t.me/+EB9UzV7WFPs4ZTM9",
+        "chat_id": -1001796030722,
+        "publish_hours": [
+          "09:00",
+          "13:00",
+          "19:00"
+        ],
+        "rules": [
+          {
+            "field": "position",
+            "filter": [
+              "designer"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Team Lead",
+        "link": "https://t.me/+0vnEDVH6ztdmZTJl",
+        "chat_id": -1001922906170,
+        "publish_hours": [
+          "09:00",
+          "13:00",
+          "19:00"
+        ],
+        "rules": [
+          {
+            "field": "position",
+            "filter": [
+              "team-lead"
             ]
           }
         ]

@@ -19,7 +19,7 @@ class CheckUserMiddleware(BaseMiddleware):
             user_id = event.from_user.id
 
         if user_id:
-            if not str(user_id) in bot_config.BOT_ADMIN_USERS:
+            if not str(user_id) in bot_config.BOT_ADMIN_USER_IDS:
                 return
 
         result = await handler(event, data)

@@ -3,6 +3,8 @@ from typing import Optional
 
 from pydantic import BaseModel
 
+from models.company import Company
+
 
 class Vacancy(BaseModel):
     id: str
@@ -27,3 +29,6 @@ class Vacancy(BaseModel):
     created_at: datetime
     updated_at: Optional[datetime]
     publication_at: Optional[datetime]
+    published: Optional[datetime]
+
+    company: Company

@@ -21,6 +21,32 @@ crashlytics-build.properties
 fabric.properties
 
 # Actual configs
-config/.env
-config/templates/template.jinja
-config/config.json
+/config/.env
+/config/templates/template.jinja
+/config/config.json
+/config/debug_config.json
+
+bot/__pycache__/
+bot/bot_functions/__pycache__/
+bot/config/__pycache__/
+bot/init/__pycache__/
+bot/init/bot/__pycache__/
+bot/init/config/__pycache__/
+bot/venv/
+bot/commands/__pycache__/
+bot/db/__pycache__/
+bot/db/models/__pycache__/
+bot/handlers/__pycache__/
+bot/init/connections/__pycache__/
+bot/init/services/__pycache__/
+bot/init/template/__pycache__/
+bot/logs/
+bot/middlewares/__pycache__/
+bot/models/__pycache__/
+bot/services/__pycache__/
+bot/services/vacancy_service/__pycache__/
+bot/services/vacancy_service/repositories/__pycache__/
+bot/services/vacancy_service/repositories/storage/__pycache__/
+ecosystem.config.js
+
+

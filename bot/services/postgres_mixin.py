@@ -21,13 +21,13 @@ class PostgresMixin:
 
     async def get_objects(self, *filters, **filters_by) -> Iterable[model]:
         async with self.session_maker(expire_on_commit=False) as db_session:
-            result = await db_session.execute(select(self.model).filter(*filters).filter_by(**filters_by))
+            result = await db_session.execute(self.what_to_select().filter(*filters).filter_by(**filters_by))
             return result.scalars().all()
 
     async def get_object(self, *filters, **filter_by) -> model | None:
         async with self.session_maker(expire_on_commit=False) as db_session:
 
-            query_result = await db_session.execute(select(self.model).filter_by(**filter_by).filter(*filters))
+            query_result = await db_session.execute(self.what_to_select().filter_by(**filter_by).filter(*filters))
             return query_result.scalars().first()
 
     async def get_objects_field(self, field_name: str) -> list[Any] | None:
@@ -49,3 +49,9 @@ class PostgresMixin:
                 await db_session.commit()
             except IntegrityError:
                 await db_session.rollback()
+
+    def what_to_select(self):
+        """
+        return the select statement for an entity, example: select(self.model).options(selectinload(self.model.company))
+        """
+        return select(self.model)

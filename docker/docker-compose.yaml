@@ -13,6 +13,7 @@ x-bot-template: &bot-template
     retries: 3
   volumes:
     - ../config/config.json:/etc/app/config.json
+    - ../config/debug_config.json:/etc/app/debug_config.json
     - ../config/templates:/etc/app/templates
   networks:
     - bot-network

@@ -1,3 +1,6 @@
+from sqlalchemy import select
+from sqlalchemy.orm import selectinload
+
 from db.models import VacancyDataModel, vacancy_postgres_to_model
 from models.vacancy import Vacancy
 from services.postgres_mixin import PostgresMixin
@@ -29,3 +32,6 @@ class VacancyStorageRepositoryPostgres(PostgresMixin, VacancyStorageRepositoryBa
 
     async def update_vacancy(self, existing_object: Vacancy, **kwargs) -> Vacancy | None:
         return await self.update_data(existing_object, kwargs)
+
+    def what_to_select(self):
+        return select(self.model).options(selectinload(self.model.company))

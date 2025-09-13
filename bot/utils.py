@@ -19,3 +19,7 @@ def get_logging_extra(user_id: Any = None) -> dict:
 
 def get_path_to(path_to_join: str) -> str:
     return os.path.join(bot_config.CONFIG_MOUNT_DIR, path_to_join)
+
+
+def is_success_http(status_code: int) -> bool:
+    return 200 <= status_code < 300
