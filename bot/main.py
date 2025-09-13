@@ -19,12 +19,18 @@ logger = structlog.get_logger('main')
 
 
 async def run_background_sending():
+    send = lambda ch: asyncio.create_task(publish_random_vacancy(None, ch))
+
     for channel in channels_config.all_channels():
+        if not channel.publish_hours:
+            continue
+
         for time_of_day in channel.publish_hours:
-            schedule.every().day.at(time_of_day).do(lambda: asyncio.create_task(publish_random_vacancy(None, channel)))
-        logger.info("set publishing of a channel", publish_hours=channel.publish_hours)
+            schedule.every().day.at(time_of_day).do(send, channel)
+        logger.info("set publishing of a channel", publish_hours=channel.publish_hours, channel=channel)
+
     while True:
-        logger.debug("pending background sending")
+        # logger.debug("pending background sending")
         schedule.run_pending()
         await asyncio.sleep(10)
 
